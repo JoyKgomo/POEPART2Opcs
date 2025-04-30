@@ -26,7 +26,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164" />
+        app:layout_constraintVertical_bias="0.164"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/edtMinGoal"
@@ -34,8 +35,13 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="223dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.319"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/edtMaxGoal"
@@ -43,8 +49,12 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="text"
-        tools:layout_editor_absoluteX="31dp"
-        tools:layout_editor_absoluteY="331dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textView10"
@@ -75,6 +85,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="454dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.667" />
 </androidx.constraintlayout.widget.ConstraintLayout>

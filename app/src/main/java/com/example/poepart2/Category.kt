@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.Spinner
 
 class Category : AppCompatActivity(){
     @SuppressLint("MissingInflatedId")
@@ -14,7 +15,7 @@ class Category : AppCompatActivity(){
 
 
 
-        val spinner = findViewById(R.id.spinner)
+        val spinner = findViewById<Spinner>(R.id.spinner)
 
         val items = listOf("Select option", "Option 1", "Option 2", "Option 3")
 
