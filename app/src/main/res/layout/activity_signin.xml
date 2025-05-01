@@ -197,16 +197,18 @@
         android:id="@+id/imageView"
         android:layout_width="158dp"
         android:layout_height="130dp"
-        app:srcCompat="@drawable/s"
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="-2dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/s" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="128dp"
         android:layout_height="123dp"
-        app:srcCompat="@drawable/l"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="-2dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/l" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
