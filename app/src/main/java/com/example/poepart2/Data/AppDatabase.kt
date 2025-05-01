@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database (entities = [User::class, Category::class, CardDetails::class], version = 1)
+@Database (entities = [User::class, Budget::class, CardDetails::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun UserDao(): UserDao
-    abstract fun CategoryDao(): CategoryDao
+    abstract fun BudgetDao(): BudgetDao
     abstract fun CardDetailsDao(): CardDetailsDao
 
     companion object {

@@ -4,9 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class Category(
+data class Budget(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val type: String,
-    val description: String,
-    val amount: String
+    val item: String,
+    val minGoal: String,
+    val maxGoal: String
 )
