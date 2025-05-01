@@ -8,7 +8,7 @@
     tools:context=".Expenses">
 
     <EditText
-        android:id="@+id/edtEmail2"
+        android:id="@+id/edtEmail"
         android:layout_width="231dp"
         android:layout_height="32dp"
         android:ems="10"

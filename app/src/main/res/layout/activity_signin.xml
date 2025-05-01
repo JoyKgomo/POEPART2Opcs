@@ -78,7 +78,7 @@
             app:layout_constraintVertical_bias="0.436" />
 
         <EditText
-            android:id="@+id/edtEmail2"
+            android:id="@+id/edtEmail"
             android:layout_width="290dp"
             android:layout_height="35dp"
             android:ems="10"
@@ -91,7 +91,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/edtEmail3"
+            android:id="@+id/edtPhoneNumber"
             android:layout_width="290dp"
             android:layout_height="35dp"
             android:ems="10"
@@ -104,7 +104,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/edtEmail4"
+            android:id="@+id/edtUsername"
             android:layout_width="290dp"
             android:layout_height="35dp"
             android:ems="10"
@@ -118,7 +118,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/edtEmail5"
+            android:id="@+id/edtPassword"
             android:layout_width="290dp"
             android:layout_height="35dp"
             android:ems="10"
@@ -131,7 +131,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <EditText
-            android:id="@+id/edtEmail6"
+            android:id="@+id/edtConfirmPassword"
             android:layout_width="290dp"
             android:layout_height="35dp"
             android:ems="10"
@@ -156,7 +156,7 @@
             app:layout_constraintVertical_bias="0.279" />
 
         <EditText
-            android:id="@+id/edtName2"
+            android:id="@+id/edtName"
             android:layout_width="288dp"
             android:layout_height="32dp"
             android:ems="10"
