@@ -11,11 +11,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.poepart2.Data.AppDatabase
+import com.example.poepart2.Data.ExpensesDao
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class Analytics : AppCompatActivity() {
+
+    private lateinit var db: AppDatabase
+    private lateinit var expensesDao: ExpensesDao
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +32,9 @@ class Analytics : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        db = AppDatabase.getDatabase(this)
+        expensesDao = db.ExpensesDao()
 
         val startDateSelection = findViewById<Button>(R.id.btnStartDate)
         val startDateDisplay = findViewById<TextView>(R.id.txtStartDateDisplay)

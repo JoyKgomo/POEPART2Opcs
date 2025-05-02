@@ -11,4 +11,7 @@ interface ExpensesDao {
 
     @Query("SELECT * FROM Expenses")
     suspend fun getAllExpenses(): List<Expenses>
+
+    @Query("SELECT * FROM Expenses WHERE expenseDate BETWEEN :startDate AND :endDate")
+    suspend fun getExpensesBetweenDates(startDate: java.util.Date, endDate: java.util.Date): List<Expenses>
 }
