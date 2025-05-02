@@ -8,6 +8,18 @@
     tools:context=".Expenses">
 
     <Button
+        android:id="@+id/btnViewExpenses"
+        android:layout_width="126dp"
+        android:layout_height="55dp"
+        android:text="View Expenses"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.926"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
+    <Button
         android:id="@+id/btn_Save_Expense"
         android:layout_width="126dp"
         android:layout_height="55dp"

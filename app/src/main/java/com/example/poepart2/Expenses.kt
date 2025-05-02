@@ -2,7 +2,10 @@ package com.example.poepart2
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -101,7 +104,7 @@ class Expenses : AppCompatActivity() {
 
         val addImage = findViewById<Button>(R.id.btn_Add_Image)
 
-        addImage.setOnClickListener {  }
+        addImage.setOnClickListener { }
 
         val saveExpense = findViewById<Button>(R.id.btn_Save_Expense)
 
@@ -166,6 +169,12 @@ class Expenses : AppCompatActivity() {
 
             Toast.makeText(this@Expenses, "Expense saved successfully!", Toast.LENGTH_SHORT).show()
 
+        }
+
+        val viewExpenses = findViewById<Button>(R.id.btnViewExpenses)
+        viewExpenses.setOnClickListener {
+            val intent = Intent(this, Analytics::class.java)
+            startActivity(intent)
         }
 
     }
