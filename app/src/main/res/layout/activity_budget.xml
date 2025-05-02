@@ -5,8 +5,22 @@
     android:id="@+id/spinner2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#FFFFFF"
     tools:layout_editor_absoluteX="128dp"
     tools:layout_editor_absoluteY="560dp">
+
+    <Button
+        android:id="@+id/btnReturn3"
+        android:layout_width="69dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#050505"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -105,7 +119,7 @@
             android:fontFamily="@font/agbalumo"
             android:text="Category Budget"
             android:textColor="#050505"
-            android:textSize="30sp"
+            android:textSize="27sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -117,6 +131,7 @@
         android:id="@+id/btnAdd"
         android:layout_width="104dp"
         android:layout_height="55dp"
+        android:backgroundTint="#050505"
         android:fontFamily="@font/alatsi"
         android:text="Add"
         android:textSize="16sp"
@@ -152,4 +167,15 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btnReturn3"
+        app:layout_constraintEnd_toEndOf="@+id/btnReturn3"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="@+id/btnReturn3"
+        app:layout_constraintTop_toTopOf="@+id/btnReturn3"
+        app:srcCompat="@drawable/arrow" />
 </androidx.constraintlayout.widget.ConstraintLayout>

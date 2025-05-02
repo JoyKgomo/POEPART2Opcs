@@ -50,8 +50,11 @@
             android:text="Sign In"
             android:textColor="#050505"
             android:textSize="30sp"
-            tools:layout_editor_absoluteX="106dp"
-            tools:layout_editor_absoluteY="7dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.078" />
 
         <EditText
             android:id="@+id/edtUsernameSignUp"
@@ -119,14 +122,40 @@
 
     <Button
         android:id="@+id/btnReturn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
+        android:layout_width="69dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#050505"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.023"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btnAddBudget2"
+        android:layout_width="115dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#070707"
+        android:fontFamily="@font/alatsi"
+        android:text="Add Budget"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btnReturn"
+        app:layout_constraintEnd_toEndOf="@+id/btnReturn"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="@+id/btnReturn"
+        app:layout_constraintTop_toTopOf="@+id/btnReturn"
+        app:srcCompat="@drawable/arrow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
