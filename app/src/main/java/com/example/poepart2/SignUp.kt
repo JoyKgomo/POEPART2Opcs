@@ -40,8 +40,6 @@ class SignUp : AppCompatActivity() {
             return
         }
 
-
-
         if (confirmPassword.isEmpty()) {
             txtConfirmPassword.error = "Enter correct password"
             return

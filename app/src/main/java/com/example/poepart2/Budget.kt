@@ -75,7 +75,7 @@ class Budget : AppCompatActivity() {
                 }
 
 
-                if (minGoal.isNotBlank() && maxGoal.isNotBlank() && selectedItem != "select option") {
+                if (minGoal.isNotBlank() && maxGoal.isNotBlank() && selectedItem != "Select option") {
                     lifecycleScope.launch {
                         budgetDao.insert(
                             com.example.poepart2.Data.Budget(

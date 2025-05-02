@@ -24,10 +24,12 @@
         android:layout_height="451dp"
         android:background="@drawable/boarder"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="49dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
 
-        tools:layout_editor_absoluteY="145dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/textView20"
@@ -189,7 +191,8 @@
             android:text="Sign Up"
             android:textColor="#050505"
             android:textSize="30sp"
-            tools:layout_editor_absoluteX="106dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="7dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
