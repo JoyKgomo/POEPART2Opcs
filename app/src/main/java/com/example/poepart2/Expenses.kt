@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
@@ -31,6 +32,10 @@ class Expenses : AppCompatActivity() {
     private var selectedItem: String ?= null
     private lateinit var db: AppDatabase
     private lateinit var expensesDao: ExpensesDao
+
+    private val picId = 123
+    private var capturedPhoto: Bitmap? = null
+    private lateinit var imageView: ImageView
 
     @SuppressLint("MissingInflatedId", "DefaultLocale")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,9 +106,11 @@ class Expenses : AppCompatActivity() {
         }
 
         val addImage = findViewById<Button>(R.id.btn_Add_Image)
+        val imageView = findViewById<ImageView>(R.id.img_Image2)
 
         addImage.setOnClickListener {
-
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cameraIntent, picId)
         }
 
         val saveExpense = findViewById<Button>(R.id.btn_Save_Expense)
@@ -183,5 +190,21 @@ class Expenses : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == picId && resultCode == RESULT_OK) {
+            val photo = data?.extras?.get("data") as? Bitmap
+            if (photo != null) {
+                capturedPhoto = photo
+                imageView.setImageBitmap(photo)
+                imageView.visibility = View.VISIBLE
+            } else {
+                Toast.makeText(this, "Failed to capture image", Toast.LENGTH_SHORT).show()
+            }
+
+
+        }
     }
 }

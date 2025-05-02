@@ -25,7 +25,7 @@ class LandingPage : AppCompatActivity(){
         db = AppDatabase.getDatabase(this)
         ExpensesDao = db.ExpensesDao()
 
-        expenseList = findViewById(R.id.txtExpense)
+        expenseList = findViewById<TextView>(R.id.txtExpense)
 
         val goToBudgetPage = findViewById<Button>(R.id.btnAddBudget)
         goToBudgetPage?.setOnClickListener{
