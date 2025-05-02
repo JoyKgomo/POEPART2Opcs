@@ -17,10 +17,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.poepart2.Data.AppDatabase
-import com.example.poepart2.Data.BudgetDao
 import com.example.poepart2.Data.ExpensesDao
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -31,7 +29,7 @@ class Expenses : AppCompatActivity() {
     private lateinit var db: AppDatabase
     private lateinit var expensesDao: ExpensesDao
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("MissingInflatedId", "DefaultLocale")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -53,7 +51,7 @@ class Expenses : AppCompatActivity() {
         val myDay = cal.get(Calendar.DAY_OF_MONTH)
 
         dateSelection.setOnClickListener {
-            val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+            val datePickerDialog = DatePickerDialog(this, { _, year, month, dayOfMonth ->
                 val formattedDate = String.format("%02d/%02d/%d", dayOfMonth, month + 1, year)
                 dateDisplay.text = formattedDate
             }, myYear, myMonth, myDay)

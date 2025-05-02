@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.poepart2.Data.AppDatabase
 import com.example.poepart2.Data.UserDao
@@ -32,8 +29,8 @@ class SignUp : AppCompatActivity() {
         val txtConfirmPassword = findViewById<EditText>(R.id.edtPasswordSignUp)
 
         // extracting from the edit text
-        val username = txtUsername.text.toString();
-        val confirmPassword = txtConfirmPassword.text.toString();
+        val username = txtUsername.text.toString()
+        val confirmPassword = txtConfirmPassword.text.toString()
 
 
         val verify = findViewById<Button>(R.id.btnSignInOfficial)
@@ -41,11 +38,12 @@ class SignUp : AppCompatActivity() {
 
             if (username.isEmpty()) {
                 txtUsername.error = "Enter Username"
-
+                return@setOnClickListener
             }
 
             if (confirmPassword.isEmpty()) {
                 txtConfirmPassword.error = "Enter correct password"
+                return@setOnClickListener
             }
 
             // In an Activity (ideally use ViewModel + coroutine)
@@ -54,7 +52,7 @@ class SignUp : AppCompatActivity() {
                 val user = db.UserDao().getUserByUsername(username)
 
                 if (user != null && user.confirmedpassword == confirmPassword) {
-                    Toast.makeText(this@SignUp, "Correct details", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SignUp, "Login successful", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this@SignUp, "Invalid email or password.", Toast.LENGTH_SHORT)
                         .show()
