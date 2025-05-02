@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.poepart2.Data.AppDatabase
 
 import com.example.poepart2.Data.ExpensesDao
+import kotlinx.coroutines.launch
 
 class LandingPage : AppCompatActivity(){
 
@@ -38,7 +40,9 @@ class LandingPage : AppCompatActivity(){
             val intent = Intent( this,Expenses::class.java)
             startActivity(intent)
         }
-
+        lifecycleScope.launch {
+            updateExpenseList()
+        }
 
 }
     private suspend fun updateExpenseList() {

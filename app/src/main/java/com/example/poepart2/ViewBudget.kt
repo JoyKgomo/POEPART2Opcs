@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.poepart2.Data.AppDatabase
 import com.example.poepart2.Data.BudgetDao
+import kotlinx.coroutines.launch
 
 class ViewBudget : AppCompatActivity() {
     private lateinit var db: AppDatabase
@@ -28,6 +30,9 @@ class ViewBudget : AppCompatActivity() {
         close?.setOnClickListener{
             val intent = Intent( this,Analytics::class.java)
             startActivity(intent)
+        }
+        lifecycleScope.launch {
+            updateBudgetList()
         }
     }
 
