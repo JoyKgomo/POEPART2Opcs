@@ -37,6 +37,9 @@ class Budget : AppCompatActivity() {
             "Transport",
             "Shopping",
             "Entertainment",
+            "Groceries",
+            "Toiletries",
+            "Utilities",
             "Insurance"
         )
 
