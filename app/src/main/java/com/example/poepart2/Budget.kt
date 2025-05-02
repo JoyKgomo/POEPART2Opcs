@@ -29,6 +29,8 @@ class Budget : AppCompatActivity() {
         budgetDao = db.BudgetDao()
 
         val goToAnalytics = findViewById<Button>(R.id.btnAdd)
+
+
         goToAnalytics.setOnClickListener {
 
         val spinner = findViewById<Spinner>(R.id.spinner2)

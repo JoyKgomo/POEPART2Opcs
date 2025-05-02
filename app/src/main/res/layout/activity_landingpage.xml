@@ -12,6 +12,7 @@
         android:backgroundTint="#070707"
         android:fontFamily="@font/alatsi"
         android:text="Add Budget"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.945"
