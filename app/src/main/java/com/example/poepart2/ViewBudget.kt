@@ -33,7 +33,7 @@ class ViewBudget : AppCompatActivity() {
 
     private suspend fun updateBudgetList() {
         val budget = budgetDao.getEntireBudget()
-        val list = budget.joinToString("\n") { "${it.id} Category: ${it.item}  Minimum Goal: ${it.minGoal} Maximum Goal: ${it.maxGoal} " }
+        val list = budget.joinToString("\n") { "${it.id} Category: ${it.item} \t Minimum Goal: ${it.minGoal} \t Maximum Goal: ${it.maxGoal} " }
         runOnUiThread {
             budgetList.text = list
         }

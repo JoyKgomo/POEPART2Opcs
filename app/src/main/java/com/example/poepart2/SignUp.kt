@@ -59,7 +59,7 @@ class SignUp : AppCompatActivity() {
                 }
 
             }
-            val intent = Intent(this, SignUp::class.java)
+            val intent = Intent(this, LandingPage::class.java)
             startActivity(intent)
         }
         val goToMainPage = findViewById<Button>(R.id.btnReturn)
