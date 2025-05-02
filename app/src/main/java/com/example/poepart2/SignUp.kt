@@ -49,7 +49,7 @@ class SignUp : AppCompatActivity() {
             }
 
             // In an Activity (ideally use ViewModel + coroutine)
-            lifecycleScope.launch {
+          /*  lifecycleScope.launch {
                 val db = AppDatabase.getDatabase(applicationContext)
                 val user = db.UserDao().getUserByUsername(username)
 
@@ -60,7 +60,7 @@ class SignUp : AppCompatActivity() {
                         .show()
                 }
 
-            }
+            }*/
             val intent = Intent(this, LandingPage::class.java)
             startActivity(intent)
         }
