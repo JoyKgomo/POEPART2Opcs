@@ -7,4 +7,6 @@ import androidx.room.Insert
 interface ExpensesDao {
     @Insert
     suspend fun insert (expenses: Expenses)
+
+
 }
