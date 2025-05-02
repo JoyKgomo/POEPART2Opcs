@@ -177,7 +177,7 @@ class Expenses : AppCompatActivity() {
 
         val returnToLanding = findViewById<Button>(R.id.btnReturn4)
         returnToLanding.setOnClickListener {
-            val intent = Intent(this, landingpage::class.java)
+            val intent = Intent(this, LandingPage::class.java)
             startActivity(intent)
         }
 

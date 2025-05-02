@@ -1,13 +1,19 @@
 package com.example.poepart2
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class Analytics : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -21,10 +27,77 @@ class Analytics : AppCompatActivity() {
             insets
         }
 
+        val startDateSelection = findViewById<Button>(R.id.btnStartDate)
+        val startDateDisplay = findViewById<TextView>(R.id.txtStartDateDisplay)
+        val cal = Calendar.getInstance()
+        val myStartYear = cal.get(Calendar.YEAR)
+        val myStartMonth = cal.get(Calendar.MONTH)
+        val myStartDay = cal.get(Calendar.DAY_OF_MONTH)
+
+        startDateSelection.setOnClickListener {
+            val datePickerDialog = DatePickerDialog(this, { _, year, month, dayOfMonth ->
+                val formattedDate = String.format("%02d/%02d/%d", dayOfMonth, month + 1, year)
+                startDateDisplay.text = formattedDate
+            }, myStartYear, myStartMonth, myStartDay)
+            datePickerDialog.show()
+        }
+
+        val endDateSelection = findViewById<Button>(R.id.btnEndDate)
+        val endDateDisplay = findViewById<TextView>(R.id.txtEndDateDisplay)
+        val myEndYear = cal.get(Calendar.YEAR)
+        val myEndMonth = cal.get(Calendar.MONTH)
+        val myEndDay = cal.get(Calendar.DAY_OF_MONTH)
+
+        endDateSelection.setOnClickListener {
+            val datePickerDialog = DatePickerDialog(this, { _, year, month, dayOfMonth ->
+                val formattedDate = String.format("%02d/%02d/%d", dayOfMonth, month + 1, year)
+                endDateDisplay.text = formattedDate
+            }, myEndYear, myEndMonth, myEndDay)
+            datePickerDialog.show()
+        }
+
+        val display = findViewById<Button>(R.id.btnViewExpenses)
+
+        display.setOnClickListener {
+            val startDateText = startDateDisplay.text.toString()
+            val endDateText = endDateDisplay.text.toString()
+
+            if (startDateText.isEmpty() || endDateText.isEmpty()){
+                Toast.makeText(this, "Please select both start and end dates.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val startDate = format.parse(startDateText)
+            val endDate = format.parse(endDateText)
+
+            if (startDate != null && endDate != null) {
+                when {
+                    startDate == endDate -> {
+                        Toast.makeText(this, "Start date cannot be equal to end date.", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                    startDate.after(endDate) -> {
+                        Toast.makeText(this, "Start date cannot be after end date.", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                    endDate.before(startDate) -> {
+                        Toast.makeText(this, "End date cannot be before start date.", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+
+                    }
+                    startDate.before(endDate) -> {
+
+                    }
+
+                }
+            }
+        }
+
         val goToMainPage = findViewById<Button>(R.id.btnViewBudget)
         goToMainPage?.setOnClickListener{
             val intent = Intent( this,ViewBudget::class.java)
             startActivity(intent)
+        }
     }
-}
 }
