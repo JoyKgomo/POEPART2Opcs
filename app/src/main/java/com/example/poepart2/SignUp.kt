@@ -1,8 +1,11 @@
 package com.example.poepart2
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,8 +15,8 @@ import com.example.poepart2.Data.AppDatabase
 import com.example.poepart2.Data.UserDao
 import kotlinx.coroutines.launch
 
-//private lateinit var db: AppDatabase
-//private lateinit var userDao: UserDao
+private lateinit var db: AppDatabase
+private lateinit var userDao: UserDao
 
 class SignUp : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -21,46 +24,54 @@ class SignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-       // db = AppDatabase.getDatabase(this)
-        //userDao = db.UserDao()
-
+         db = AppDatabase.getDatabase(this)
+        userDao = db.UserDao()
 
 
         val txtUsername = findViewById<EditText>(R.id.edtUsernameSignUp)
         val txtConfirmPassword = findViewById<EditText>(R.id.edtPasswordSignUp)
 
         // extracting from the edit text
-
         val username = txtUsername.text.toString();
         val confirmPassword = txtConfirmPassword.text.toString();
 
 
-        if (username.isEmpty()){
-            txtUsername.error ="Enter Username"
-            return
-        }
+        val verify = findViewById<Button>(R.id.btnSignInOfficial)
+        verify.setOnClickListener {
 
-        if (confirmPassword.isEmpty()) {
-            txtConfirmPassword.error = "Enter correct password"
-            return
-        }
+            if (username.isEmpty()) {
+                txtUsername.error = "Enter Username"
 
-        // In an Activity (ideally use ViewModel + coroutine)
-        lifecycleScope.launch {
-            val db = AppDatabase.getDatabase(applicationContext)
-            val user = db.UserDao().getUserByUsername(username)
-
-            if (user != null && user.confirmedpassword == confirmPassword) {
-             //   Toast.makeText(this@YourActivity, "Login successful!", Toast.LENGTH_SHORT).show()
-                // Navigate to the next screen
-            } else {
-               // Toast.makeText(this@YourActivity, "Invalid email or password.", Toast.LENGTH_SHORT).show()
             }
-        }
 
+            if (confirmPassword.isEmpty()) {
+                txtConfirmPassword.error = "Enter correct password"
+            }
+
+            // In an Activity (ideally use ViewModel + coroutine)
+            lifecycleScope.launch {
+                val db = AppDatabase.getDatabase(applicationContext)
+                val user = db.UserDao().getUserByUsername(username)
+
+                if (user != null && user.confirmedpassword == confirmPassword) {
+                    Toast.makeText(this@SignUp, "Correct details", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@SignUp, "Invalid email or password.", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+            }
+            val intent = Intent(this, SignUp::class.java)
+            startActivity(intent)
+        }
+        val goToMainPage = findViewById<Button>(R.id.btnReturn)
+        goToMainPage?.setOnClickListener{
+            val intent = Intent( this,MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
 
 
     }
 
-}

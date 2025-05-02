@@ -7,8 +7,8 @@ import androidx.room.Query
 @Dao
 interface BudgetDao {
     @Insert
-    suspend fun insert (Category:Budget)
+    suspend fun insert (budget:Budget)
 
     @Query("SELECT * FROM Budget")
-    suspend fun getAllUsers(): List<Budget>
+    suspend fun getEntireBudget(): List<Budget>
 }

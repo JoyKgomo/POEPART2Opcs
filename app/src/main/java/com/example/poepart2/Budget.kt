@@ -1,18 +1,18 @@
 package com.example.poepart2
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Spinner
 import androidx.lifecycle.lifecycleScope
 import com.example.poepart2.Data.AppDatabase
-import com.example.poepart2.Data.Budget
 import com.example.poepart2.Data.BudgetDao
-import com.example.poepart2.Data.UserDao
 import kotlinx.coroutines.launch
 
 class Budget : AppCompatActivity() {
@@ -28,8 +28,10 @@ class Budget : AppCompatActivity() {
         db = AppDatabase.getDatabase(this)
         budgetDao = db.BudgetDao()
 
+        val goToAnalytics = findViewById<Button>(R.id.btnAdd)
+        goToAnalytics.setOnClickListener {
 
-        val spinner = findViewById<Spinner>(R.id.spinner)
+        val spinner = findViewById<Spinner>(R.id.spinner2)
 
         val items = listOf(
             "Select option",
@@ -92,5 +94,8 @@ class Budget : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         }
+            val intent = Intent( this,Analytics::class.java)
+            startActivity(intent)
     }
+}
 }

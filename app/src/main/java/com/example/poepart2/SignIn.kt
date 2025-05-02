@@ -40,48 +40,47 @@ class SignIn : AppCompatActivity() {
         val password = txtPassword.text.toString();
         val confirmPassword = txtConfirmPassword.text.toString();
 
-        if (NameandSurname.isEmpty()){
-            txtUsername.error ="Enter Name and Surname"
-            return
-        }
+        val goToSignUp = findViewById<Button>(R.id.btnsignup)
+        goToSignUp.setOnClickListener {
+            if (NameandSurname.isEmpty()) {
+                txtUsername.error = "Enter Name and Surname"
+            }
 
-        if (email.isEmpty()){
-            txtUsername.error ="Enter Email"
-            return
-        }
+            if (email.isEmpty()) {
+                txtUsername.error = "Enter Email"
+            }
 
-        if (phoneNumber.isEmpty()){
-            txtUsername.error ="Enter Phone Number"
-            return
-        }
+            if (phoneNumber.isEmpty()) {
+                txtUsername.error = "Enter Phone Number"
+            }
 
-        if (username.isEmpty()){
-            txtUsername.error ="Enter Username"
-            return
-        }
+            if (username.isEmpty()) {
+                txtUsername.error = "Enter Username"
+            }
 
 
-        if (password.isEmpty()) {
-            txtPassword.error ="Enter password"
-            return
-        }
+            if (password.isEmpty()) {
+                txtPassword.error = "Enter password"
+            }
 
-        if (confirmPassword != password) {
-            txtConfirmPassword.error = "Enter correct password"
-            return
-        }
+            if (confirmPassword != password) {
+                txtConfirmPassword.error = "Enter correct password"
 
-        val signIn = findViewById<Button>(R.id.btnSignUp)
-        signIn.setOnClickListener{
-            val intent = Intent(this, SignUp::class.java)
-            startActivity(intent)
-        }
+            }
 
         if (username.isNotBlank() && confirmPassword.isNotBlank()){
             lifecycleScope.launch {
                 userDao.insert(User(username = username, confirmedpassword = confirmPassword  ))
             }
         }
+            val intent = Intent( this,SignUp::class.java)
+            startActivity(intent)
 
+    }
+        val goToMainPage = findViewById<Button>(R.id.btnBack)
+        goToMainPage?.setOnClickListener{
+            val intent = Intent( this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

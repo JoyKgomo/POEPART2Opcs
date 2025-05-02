@@ -10,3 +10,4 @@ data class Budget(
     val minGoal: String,
     val maxGoal: String
 )
+
