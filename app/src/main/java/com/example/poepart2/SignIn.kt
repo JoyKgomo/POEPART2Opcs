@@ -25,25 +25,28 @@ class SignIn : AppCompatActivity() {
         db = AppDatabase.getDatabase(this)
         userDao = db.UserDao()
 
-        val txtName = findViewById<EditText>(R.id.edtName)
-        val txtEmail = findViewById<EditText>(R.id.edtEmail)
-        val txtNumber = findViewById<EditText>(R.id.edtPhoneNumber)
-        val txtUsername = findViewById<EditText>(R.id.edtUsername)
-        val txtPassword = findViewById<EditText>(R.id.edtPassword)
-        val txtConfirmPassword = findViewById<EditText>(R.id.edtConfirmPassword)
 
-        // extracting from the edit text
-        val NameandSurname = txtName.text.toString();
-        val email = txtEmail.text.toString();
-        val phoneNumber = txtNumber.text.toString();
-        val username = txtUsername.text.toString();
-        val password = txtPassword.text.toString();
-        val confirmPassword = txtConfirmPassword.text.toString();
 
         val goToSignUp = findViewById<Button>(R.id.btnsignup)
         goToSignUp.setOnClickListener {
+
+            val txtName = findViewById<EditText>(R.id.edtName)
+            val txtEmail = findViewById<EditText>(R.id.edtEmail)
+            val txtNumber = findViewById<EditText>(R.id.edtPhoneNumber)
+            val txtUsername = findViewById<EditText>(R.id.edtUsername)
+            val txtPassword = findViewById<EditText>(R.id.edtPassword)
+            val txtConfirmPassword = findViewById<EditText>(R.id.edtConfirmPassword)
+
+            // extracting from the edit text
+            val NameandSurname = txtName.text.toString();
+            val email = txtEmail.text.toString();
+            val phoneNumber = txtNumber.text.toString();
+            val username = txtUsername.text.toString();
+            val password = txtPassword.text.toString();
+            val confirmPassword = txtConfirmPassword.text.toString()
+
             if (NameandSurname.isEmpty()) {
-                txtName.error = "Enter Name and Surname"
+                txtName.error = "Enter Name and Surname";
                 return@setOnClickListener
             }
 

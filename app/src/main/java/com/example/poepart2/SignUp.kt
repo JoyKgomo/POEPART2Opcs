@@ -25,16 +25,18 @@ class SignUp : AppCompatActivity() {
         userDao = db.UserDao()
 
 
-        val txtUsername = findViewById<EditText>(R.id.edtUsernameSignUp)
-        val txtConfirmPassword = findViewById<EditText>(R.id.edtPasswordSignUp)
 
-        // extracting from the edit text
-        val username = txtUsername.text.toString()
-        val confirmPassword = txtConfirmPassword.text.toString()
 
 
         val verify = findViewById<Button>(R.id.btnSignInOfficial)
         verify.setOnClickListener {
+
+            val txtUsername = findViewById<EditText>(R.id.edtUsernameSignUp)
+            val txtConfirmPassword = findViewById<EditText>(R.id.edtPasswordSignUp)
+
+            // extracting from the edit text
+            val username = txtUsername.text.toString()
+            val confirmPassword = txtConfirmPassword.text.toString()
 
             if (username.isEmpty()) {
                 txtUsername.error = "Enter Username"
