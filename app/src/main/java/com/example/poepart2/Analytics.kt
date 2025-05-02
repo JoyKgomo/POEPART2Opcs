@@ -143,6 +143,17 @@ class Analytics : AppCompatActivity() {
                 }
             }
         }
+        val returnToLanding = findViewById<Button>(R.id.btnReturn2)
+        returnToLanding.setOnClickListener {
+            val intent = Intent(this, LandingPage::class.java)
+            startActivity(intent)
+        }
 
+        val moveToViewBudget = findViewById<Button>(R.id.btnViewBudget)
+        moveToViewBudget.setOnClickListener {
+            val intent = Intent(this, ViewBudget::class.java)
+            startActivity(intent)
+        }
     }
+
 }

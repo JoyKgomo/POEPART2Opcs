@@ -102,7 +102,9 @@ class Expenses : AppCompatActivity() {
 
         val addImage = findViewById<Button>(R.id.btn_Add_Image)
 
-        addImage.setOnClickListener { }
+        addImage.setOnClickListener {
+
+        }
 
         val saveExpense = findViewById<Button>(R.id.btn_Save_Expense)
 
