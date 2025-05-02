@@ -11,8 +11,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.poepart2.Data.AppDatabase
 import com.example.poepart2.Data.ExpensesDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -71,42 +75,74 @@ class Analytics : AppCompatActivity() {
             val startDateText = startDateDisplay.text.toString()
             val endDateText = endDateDisplay.text.toString()
 
-            if (startDateText.isEmpty() || endDateText.isEmpty()){
-                Toast.makeText(this, "Please select both start and end dates.", Toast.LENGTH_SHORT).show()
+            if (startDateText.isEmpty() || endDateText.isEmpty()) {
+                Toast.makeText(this, "Please select both start and end dates.", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
             }
 
             val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             val startDate = format.parse(startDateText)
             val endDate = format.parse(endDateText)
+            val txtExpenseResults = findViewById<TextView>(R.id.txtExpensesDisplay)
+
 
             if (startDate != null && endDate != null) {
                 when {
                     startDate == endDate -> {
-                        Toast.makeText(this, "Start date cannot be equal to end date.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "Start date cannot be equal to end date.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         return@setOnClickListener
                     }
+
                     startDate.after(endDate) -> {
-                        Toast.makeText(this, "Start date cannot be after end date.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "Start date cannot be after end date.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         return@setOnClickListener
                     }
+
                     endDate.before(startDate) -> {
-                        Toast.makeText(this, "End date cannot be before start date.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "End date cannot be before start date.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         return@setOnClickListener
 
                     }
-                    startDate.before(endDate) -> {
+                    else -> {
+                        // Valid range - proceed with query
+                        lifecycleScope.launch {
+                            val expensesBetween = withContext(Dispatchers.IO) {
+                                expensesDao.getExpensesBetweenDates(startDate, endDate)
+                            }
+
+                            if (expensesBetween.isEmpty()) {
+                                txtExpenseResults.text = "No expenses found in this range."
+                            } else {
+                                val formattedText = expensesBetween.joinToString("\n\n") { expense ->
+                                    "Date: ${expense.expenseDate}\n" +
+                                            "Category: ${expense.categoryItem}\n" +
+                                            "Description: ${expense.description}\n" +
+                                            "Amount: R${expense.amount}"
+                                }
+
+                                txtExpenseResults.text = formattedText
+
+                            }
+                        }
+
 
                     }
-
                 }
             }
         }
 
-        val goToMainPage = findViewById<Button>(R.id.btnViewBudget)
-        goToMainPage?.setOnClickListener{
-            val intent = Intent( this,ViewBudget::class.java)
-            startActivity(intent)
-        }
     }
 }
