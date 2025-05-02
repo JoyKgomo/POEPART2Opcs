@@ -54,7 +54,7 @@
             tools:layout_editor_absoluteY="7dp" />
 
         <EditText
-            android:id="@+id/edtUsernameSignUp2"
+            android:id="@+id/edtUsernameSignUp"
             android:layout_width="276dp"
             android:layout_height="40dp"
             android:ems="10"
@@ -64,7 +64,7 @@
             tools:layout_editor_absoluteY="87dp" />
 
         <EditText
-            android:id="@+id/edtPasswordSignUp2"
+            android:id="@+id/edtPasswordSignUp"
             android:layout_width="278dp"
             android:layout_height="44dp"
             android:ems="10"
