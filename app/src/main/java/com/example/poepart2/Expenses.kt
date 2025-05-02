@@ -10,17 +10,26 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.poepart2.Data.AppDatabase
+import com.example.poepart2.Data.BudgetDao
+import com.example.poepart2.Data.ExpensesDao
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 class Expenses : AppCompatActivity() {
 
     private var selectedItem: String ?= null
     private lateinit var db: AppDatabase
+    private lateinit var expensesDao: ExpensesDao
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +43,7 @@ class Expenses : AppCompatActivity() {
         }
 
         db = AppDatabase.getDatabase(this)
+        expensesDao = db.ExpensesDao()
 
         val dateSelection = findViewById<Button>(R.id.btn_Date)
         val dateDisplay = findViewById<TextView>(R.id.txt_Date_Display)
@@ -44,20 +54,16 @@ class Expenses : AppCompatActivity() {
 
         dateSelection.setOnClickListener {
             val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                dateDisplay.text = "${dayOfMonth}/${month + 1}/$year"
+                val formattedDate = String.format("%02d/%02d/%d", dayOfMonth, month + 1, year)
+                dateDisplay.text = formattedDate
             }, myYear, myMonth, myDay)
             datePickerDialog.show()
         }
 
         val spinner = findViewById<Spinner>(R.id.spinner2)
-        val txtExpenseAmount = findViewById<EditText>(R.id.edtAmount)
-        val txtExpenseDescription = findViewById<EditText>(R.id.edtDescription)
-
-        val expenseAmount = txtExpenseAmount.text.toString()
-        val expenseDescription = txtExpenseDescription.text.toString()
 
         val items = listOf(
-            "Select Category",
+            "Select category",
             "Rent/Mortgage",
             "Transport",
             "Shopping",
@@ -91,6 +97,75 @@ class Expenses : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }
+        }
+
+        val addImage = findViewById<Button>(R.id.btn_Add_Image)
+
+        addImage.setOnClickListener {  }
+
+        val saveExpense = findViewById<Button>(R.id.btn_Save_Expense)
+
+        //val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
+        saveExpense.setOnClickListener {
+            val txtExpenseAmount = findViewById<EditText>(R.id.edtAmount)
+            val txtExpenseDescription = findViewById<EditText>(R.id.edtDescription)
+
+            val expenseAmount = txtExpenseAmount.text.toString()
+            val amount = expenseAmount.toDoubleOrNull()
+            val expenseDescription = txtExpenseDescription.text.toString()
+            val dateString = dateDisplay.text.toString()
+
+            if (expenseDescription.isEmpty()){
+                Toast.makeText(this, "Please enter a description.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (amount == null || amount == 0.0){
+                Toast.makeText(this, "Please enter a valid amount greater than zero.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val category = selectedItem ?: ""
+            if (category == "Select category" || category.isEmpty()){
+                Toast.makeText(this, "Please select a category.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (dateString.isEmpty()){
+                Toast.makeText(this, "Please select a date.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val parsedDate = try {
+                SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).parse(dateString)
+            } catch (e: Exception) {
+                null
+            }
+
+            if (parsedDate == null) {
+                Toast.makeText(this, "Date format is invalid.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            lifecycleScope.launch {
+                expensesDao.insert(
+                    com.example.poepart2.Data.Expenses(
+                        expenseDate = parsedDate,
+                        categoryItem = category,
+                        description = expenseDescription,
+                        amount = amount
+                    )
+                )
+            }
+
+            txtExpenseAmount.text.clear()
+            txtExpenseDescription.text.clear()
+            dateDisplay.text = ""
+            spinner.setSelection(0)
+
+            Toast.makeText(this@Expenses, "Expense saved successfully!", Toast.LENGTH_SHORT).show()
+
         }
 
     }

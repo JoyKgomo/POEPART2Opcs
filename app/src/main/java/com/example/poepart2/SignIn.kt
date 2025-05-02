@@ -43,15 +43,15 @@ class SignIn : AppCompatActivity() {
         val goToSignUp = findViewById<Button>(R.id.btnsignup)
         goToSignUp.setOnClickListener {
             if (NameandSurname.isEmpty()) {
-                txtUsername.error = "Enter Name and Surname"
+                txtName.error = "Enter Name and Surname"
             }
 
             if (email.isEmpty()) {
-                txtUsername.error = "Enter Email"
+                txtEmail.error = "Enter Email"
             }
 
             if (phoneNumber.isEmpty()) {
-                txtUsername.error = "Enter Phone Number"
+                txtNumber.error = "Enter Phone Number"
             }
 
             if (username.isEmpty()) {
