@@ -23,7 +23,7 @@ class Analytics : AppCompatActivity() {
 
         val goToMainPage = findViewById<Button>(R.id.btnViewBudget)
         goToMainPage?.setOnClickListener{
-            val intent = Intent( this,viewBudget::class.java)
+            val intent = Intent( this,ViewBudget::class.java)
             startActivity(intent)
     }
 }
