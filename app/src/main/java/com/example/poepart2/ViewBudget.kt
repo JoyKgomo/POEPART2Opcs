@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.poepart2.Data.AppDatabase
 import com.example.poepart2.Data.BudgetDao
 
-class viewBudget : AppCompatActivity() {
+class ViewBudget : AppCompatActivity() {
     private lateinit var db: AppDatabase
     private lateinit var budgetDao: BudgetDao
     private lateinit var budgetList: TextView
@@ -31,7 +31,7 @@ class viewBudget : AppCompatActivity() {
         }
     }
 
-    private suspend fun updateBookList() {
+    private suspend fun updateBudgetList() {
         val budget = budgetDao.getEntireBudget()
         val list = budget.joinToString("\n") { "${it.id} Category: ${it.item}  Minimum Goal: ${it.minGoal} Maximum Goal: ${it.maxGoal} " }
         runOnUiThread {

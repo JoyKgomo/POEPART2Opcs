@@ -8,6 +8,19 @@
     tools:context=".Analytics">
 
     <Button
+        android:id="@+id/btnReturn2"
+        android:layout_width="69dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#050505"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
         android:id="@+id/btnViewBudget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,4 +31,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.865" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btnReturn2"
+        app:layout_constraintEnd_toEndOf="@+id/btnReturn2"
+        app:layout_constraintStart_toStartOf="@+id/btnReturn2"
+        app:layout_constraintTop_toTopOf="@+id/btnReturn2"
+        app:srcCompat="@drawable/arrow" />
 </androidx.constraintlayout.widget.ConstraintLayout>
