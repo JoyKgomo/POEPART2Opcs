@@ -66,7 +66,7 @@ class Expenses : AppCompatActivity() {
             datePickerDialog.show()
         }
 
-        val spinner = findViewById<Spinner>(R.id.spinner2)
+        val spinner = findViewById<Spinner>(R.id.spinner3)
 
         val items = listOf(
             "Select category",
@@ -106,7 +106,7 @@ class Expenses : AppCompatActivity() {
         }
 
         val addImage = findViewById<Button>(R.id.btn_Add_Image)
-        val imageView = findViewById<ImageView>(R.id.img_Image2)
+        imageView = findViewById<ImageView>(R.id.img_Image2)
 
         addImage.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)

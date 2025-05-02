@@ -27,7 +27,7 @@ class LandingPage : AppCompatActivity(){
         db = AppDatabase.getDatabase(this)
         ExpensesDao = db.ExpensesDao()
 
-        expenseList = findViewById<TextView>(R.id.txtExpense)
+        expenseList = findViewById(R.id.txtExpense)
 
         val goToBudgetPage = findViewById<Button>(R.id.btnAddBudget)
         goToBudgetPage?.setOnClickListener{
@@ -40,11 +40,18 @@ class LandingPage : AppCompatActivity(){
             val intent = Intent( this,Expenses::class.java)
             startActivity(intent)
         }
+
+        val goToAnalyticsPage = findViewById<Button>(R.id.btnanalytics2)
+        goToAnalyticsPage.setOnClickListener {
+            val intent = Intent(this, Analytics::class.java)
+            startActivity(intent)
+        }
+
         lifecycleScope.launch {
             updateExpenseList()
         }
 
-}
+    }
     private suspend fun updateExpenseList() {
         val expense = ExpensesDao.getAllExpenses()
         val list = expense.joinToString("\n") { "${it.id} Category: ${it.categoryItem} \t Description: ${it.description} \t Amount: ${it.amount} " }

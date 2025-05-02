@@ -69,7 +69,7 @@ class Analytics : AppCompatActivity() {
             datePickerDialog.show()
         }
 
-        val display = findViewById<Button>(R.id.btnViewExpenses)
+        val display = findViewById<Button>(R.id.btnDisplayExpenses)
 
         display.setOnClickListener {
             val startDateText = startDateDisplay.text.toString()
